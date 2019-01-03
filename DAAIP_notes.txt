@@ -1,0 +1,62 @@
+m_rrip_bits is an array of length associativity. It stores RRPV value
+
+m_block_access is an array of length associativity. It records the number of times a block got hit
+
+m_block_owner is an array of length associativity. It records which core accessed the block.
+
+g_insertionCore0 and g_insertionCore1 are arrays of length 1024 
+
+if g_InsValidBlocksC0 reaches the max value of saturation counter, calculate percentage of deadblocks
+
+Counters:
+Inserted block counter c0 = g_InsValidBlocksC1
+Inserted block counter c1 = g_InsValidBlocksC1
+Dead block counter c0 = g_ValidDeadBlocksC0
+Dead block counter c1 = g_ValidDeadBlocksC1
+invalid block counter = g_numBlocksInvalid
+g_numTotalBlocksInsC0 ??
+
+line 129??
+
+g_insertionCore0[g_iteration] = g_core0_insert; ??
+line 261
+
+//////////////////////////
+
+ {
+        UInt32 a = m_block_access[index];
+
+        /* When a >= 10, we are storing the accesses in 10 */
+        if (a >= 4)
+        {
+            a = 4;
+        }
+         
+        g_block_access_count[g_phaseID][a]++;
+ }
+
+line 288. What is the function of this block??
+/////////////////////////
+
+InsertBlockAtIndex: This function returns the index of the block to be evicted i.e. victim block
+
+Deadblock counter is modified during eviction (?)
+
+Index determines a block in a set (?)
+
+Insertion means nothing but changing the rrpv of victim to g_core0_insert/g_core1_insert
+
+What if m_rrip_bits[index] = m_rrip_insert in line 318 ??
+
+if g_InsValidBlocksC0 reaches the max value of saturation counter, calculate percentage of deadblocks and determine insertion location for next block (at m_rrip_max or m_rrip_insert)
+
+
+getReplacementIndex: This function returns 'i' which is similar to the index of an invalid block
+
+General Doubt: Don't we need to keep track of m_block_access for all the cache blocks?? Here number of hit of a block is kept between the interval of its insertion and eviction.  
+
+
+
+
+
+
